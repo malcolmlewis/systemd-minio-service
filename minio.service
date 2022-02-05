@@ -12,10 +12,15 @@ ProtectKernelLogs=true
 ProtectControlGroups=true
 RestrictRealtime=true
 # end of hardening effort
+
 Type=simple
-#EnvironmentFile=-/etc/default/minio
-EnvironmentFile=-/var/lib/minio-user/auth_user
-ExecStart=/usr/sbin/start_minio
+EnvironmentFile=-/etc/sysconfig/minio
+ExecStart=/usr/bin/sh -c "MINIO_ROOT_USER=${MINIO_ROOT_USER} \
+   MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD} \
+   /usr/local/bin/minio server ${MINIO_VOLUMES} \
+   --certs-dir ${MINIO_CERTS} \
+   --address ${MINIO_DOMAIN}:${MINIO_DOMAIN_PORT} \
+   --console-address :${MINIO_CONSOLE_PORT}"
 
 # Specifies the maximum file descriptor number that can be opened by this process
 LimitNOFILE=65536
@@ -25,6 +30,7 @@ TimeoutStopSec=infinity
 SendSIGKILL=no
 
 User=minio-user
+Group=nogroup
 
 Restart=always
 

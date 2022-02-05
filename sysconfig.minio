@@ -1,23 +1,23 @@
-## Description: systemd htop.service configuration file
+## Description: systemd minio.service configuration file
 ## URL: https://github.com/malcolmlewis/systemd-minio-service
 ## License: GPL-2.0
 ## Copyright (c) 2022 Malcolm J Lewis <malcolmlewis@opensuse.org>
 ## Path: System/minio
 ## Description:	MinIO configuration settings
 ## Type:	string
-## Default:	"admin"
+## Default:	"minio"
 ## ServiceRestart: systemctl restart minio.service
 #
 # Default user name
 #
-MINIO_ROOT_USER="admin"
+MINIO_ROOT_USER="minio"
 
 ## Type:	string
 ## Default:	"miniostorage"
 #
 # Default password
 #
-MINIO_ROOT_PASSWORD="iamadmin"
+MINIO_ROOT_PASSWORD="miniostorage"
 
 ## Type:	string
 ## Default:	"/etc/minio/certs"

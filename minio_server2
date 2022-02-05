@@ -1,0 +1,25 @@
+#!/usr/bin/bash
+#. /etc/sysconfig/minio
+
+#Initial configuration needed
+if  [[ $1 = "--config" ]]; then
+   echo "*** Initial MinIO Configuration"
+   mkdir -p /var/lib/minio-user
+   touch /var/lib/minio-user/.configured
+	chown -R minio-user:nogroup /var/lib/minio-user
+   mkdir -p /etc/minio/certs
+   chown -R minio-user:nogroup /etc/minio
+   echo "*** Initial Configuration completed ***"
+   echo "Manual steps now required!"
+   echo "1. Copy your private.key and public.crt files to /etc/minio/certs"
+   echo "Then run the command `chown -R minio-user:nogroup /etc/minio`"
+else
+
+   MINIO_ROOT_USER=${MINIO_ROOT_USER} \
+   MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD} \
+   /usr/local/bin/minio server ${MINIO_VOLUMES} \
+   --certs-dir ${MINIO_CERTS} \
+   --address ${MINIO_DOMAIN}:${MINIO_DOMAIN_PORT} \
+   --console-address :${MINIO_CONSOLE_PORT}
+fi
+

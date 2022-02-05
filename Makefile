@@ -35,11 +35,4 @@ install:
 	install -m 0644 $(SERVICEFILE) $(DESTDIR)$(UNITDIR)/
 	mkdir -p $(DESTDIR)$(FILLUPDIR)
 	install -m 0644 $(SYSCONFFILE) $(DESTDIR)$(FILLUPDIR)/
-	mkdir -p $(DESTDIR)$(BINDIR)
-	install -m 0755 minio_server $(DESTDIR)$(BINDIR)/minio_server
-    # Add the minio user
-	#useradd -r -G nobody -s /usr/bin/false -c "systemd minio user" -d /var/lib/minio-user minio-user
-    #mkdir -p $(DESTDIR)/var/lib/minio-user
-	#chown -R minio-user:nobody /var/lib/minio-user
-    #mkdir -p /etc/minio/certs
-    #chown -R minio-user:nobody /etc/minio
+
