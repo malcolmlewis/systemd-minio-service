@@ -1,0 +1,55 @@
+## Description: systemd htop.service configuration file
+## URL: https://github.com/malcolmlewis/systemd-minio-service
+## License: GPL-2.0
+## Copyright (c) 2022 Malcolm J Lewis <malcolmlewis@opensuse.org>
+## Path: System/minio
+## Description:	minio default user
+## Type:	string
+## Default:	"minio"
+## ServiceRestart: systemctl restart minio.service
+#
+# Default user name
+#
+MINIO_ROOT_USER="admin"
+
+## Type:	string
+## Default:	"miniostorage"
+#
+# Default password
+#
+MINIO_ROOT_PASSWORD="iamadmin"
+
+## Type:	string
+## Default:	"/etc/minio/certs"
+#
+# Default location for the certificates (private.key public.crt)
+#
+MINIO_CERTS="/etc/minio/certs"
+
+## Type:	string
+## Default:	""
+#
+# FQDN or IP Address on minio server
+#
+MINIO_DOMAIN=""
+
+## Type:	string
+## Default:	"9000"
+#
+# Default server port
+#
+MINIO_DOMAIN_PORT="9000"
+
+## Type:	string
+## Default:	"9001"
+#
+# Default console port
+#
+MINIO_CONSOLE_PORT="9001"
+
+## Type:	string
+## Default:	""
+#
+# Storage volume path
+#
+MINIO_VOLUMES=""

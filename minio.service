@@ -1,0 +1,32 @@
+[Unit]
+Description=MinIO S3 Instance
+After=network.target
+
+[Service]
+# https://en.opensuse.org/openSUSE:Security_Features#Systemd_hardening_effort
+ProtectSystem=full
+ProtectHome=true
+ProtectHostname=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+RestrictRealtime=true
+# end of hardening effort
+Type=simple
+#EnvironmentFile=-/etc/default/minio
+EnvironmentFile=-/var/lib/minio-user/auth_user
+ExecStart=/usr/sbin/start_minio
+
+# Specifies the maximum file descriptor number that can be opened by this process
+LimitNOFILE=65536
+
+# Disable timeout logic and wait until process is stopped
+TimeoutStopSec=infinity
+SendSIGKILL=no
+
+User=minio-user
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
