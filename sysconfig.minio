@@ -3,9 +3,9 @@
 ## License: GPL-2.0
 ## Copyright (c) 2022 Malcolm J Lewis <malcolmlewis@opensuse.org>
 ## Path: System/minio
-## Description:	minio default user
+## Description:	MinIO configuration settings
 ## Type:	string
-## Default:	"minio"
+## Default:	"admin"
 ## ServiceRestart: systemctl restart minio.service
 #
 # Default user name

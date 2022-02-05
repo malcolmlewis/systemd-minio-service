@@ -41,5 +41,5 @@ install:
 	#useradd -r -G nobody -s /usr/bin/false -c "systemd minio user" -d /var/lib/minio-user minio-user
     #mkdir -p $(DESTDIR)/var/lib/minio-user
 	#chown -R minio-user:nobody /var/lib/minio-user
-    #mkdir -p /etc/minio
+    #mkdir -p /etc/minio/certs
     #chown -R minio-user:nobody /etc/minio
