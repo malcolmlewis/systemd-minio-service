@@ -1,6 +1,8 @@
 [Unit]
 Description=MinIO S3 Instance
-After=network.target
+Wants=network-online.target
+After=network-online.target
+AssertFileIsExecutable=/usr/local/bin/minio
 
 [Service]
 # https://en.opensuse.org/openSUSE:Security_Features#Systemd_hardening_effort
@@ -13,9 +15,11 @@ ProtectControlGroups=true
 RestrictRealtime=true
 # end of hardening effort
 
+WorkingDirectory=/usr/local/
+
 Type=simple
 EnvironmentFile=-/etc/sysconfig/minio
-ExecStart=/usr/bin/sh -c "MINIO_ROOT_USER=${MINIO_ROOT_USER} \
+ExecStart=/usr/bin/sh -c "sleep 2 ; MINIO_ROOT_USER=${MINIO_ROOT_USER} \
    MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD} \
    /usr/local/bin/minio server ${MINIO_VOLUMES} \
    --certs-dir ${MINIO_CERTS} \
@@ -23,11 +27,12 @@ ExecStart=/usr/bin/sh -c "MINIO_ROOT_USER=${MINIO_ROOT_USER} \
    --console-address :${MINIO_CONSOLE_PORT}"
 
 # Specifies the maximum file descriptor number that can be opened by this process
-LimitNOFILE=65536
-
+LimitNOFILE=1048576
 # Disable timeout logic and wait until process is stopped
 TimeoutStopSec=infinity
 SendSIGKILL=no
+# Specifies the maximum number of threads this process can create
+TasksMax=infinity
 
 User=minio-user
 Group=nogroup

@@ -29,7 +29,7 @@ MINIO_CERTS="/etc/minio/certs"
 ## Type:	string
 ## Default:	""
 #
-# FQDN or IP Address on minio server
+# FQDN or IP Address of minio server
 #
 MINIO_DOMAIN=""
 
